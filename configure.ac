@@ -242,7 +242,7 @@ AC_HEADER_TIME
 
 dnl Checks for library functions.
 AC_FUNC_MMAP
-AC_CHECK_FUNCS(gettimeofday)
+AC_CHECK_FUNCS(gettimeofday, sched_setscheduler)
 
 AC_SUBST(ac_aux_dir)
 AC_SUBST(RPM_RELEASE)

@@ -859,6 +859,7 @@ int rt_raisepri (int pri)
 {
 #ifdef _SC_PRIORITY_SCHEDULING
 	struct sched_param scp;
+        int ret = -1;
 
 	/*
 	 * Verify that scheduling is available
@@ -870,7 +871,10 @@ int rt_raisepri (int pri)
 	} else {
 		memset (&scp, '\0', sizeof (scp));
 		scp.sched_priority = sched_get_priority_max (SCHED_RR) - pri;
-		if (sched_setscheduler (0, SCHED_RR, &scp) < 0)	{
+#ifdef HAVE_SCHED_SETSCHEDULER
+		ret = sched_setscheduler (0, SCHED_RR, &scp)
+#endif
+		if (ret < 0)	{
 			fprintf (stderr, "WARNING: Cannot set RR-scheduler\n");
 			return (-1);
 		}
