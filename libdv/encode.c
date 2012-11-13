@@ -1884,10 +1884,6 @@ int dv_encode_full_frame(dv_encoder_t *dv_enc, uint8_t **in,
 	return 0;
 }
 
-#ifdef __linux__
-void swab(const void*, void*, ssize_t);
-#endif
-
 /** @brief Encode signed 16-bit integer PCM audio data into a frame of DV video.
  *
  * @param dv_enc A pointer to a dv_encoder_t struct containing relevant options:
@@ -1926,8 +1922,10 @@ int dv_encode_full_audio(dv_encoder_t *dv_enc, int16_t **pcm,
 	/* interleave channels */
 	if (channels > 1) {
 		for (i=0; i < DV_AUDIO_MAX_SAMPLES; i++)
-			for (j=0; j < channels; j++)
-				swab( pcm[j]+i, audio.data + (i*2+j)*channels, 2);
+			for (j=0; j < channels; j++) {
+                                uint16_t tmp = *(audio.data + (i*2+j)*channels);
+                                *(pcm[j]+i) = ((tmp<<8) & 0xff00) | ((tmp >> 8) & 0x00ff);
+                        }
 	}
 
 	return _dv_raw_insert_audio(frame_buf, &audio, dv_enc->isPAL);
