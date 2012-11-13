@@ -4,7 +4,7 @@ else
 gtk_subdirs =
 endif
 
-SUBDIRS                   = libdv encodedv $(gtk_subdirs)
+SUBDIRS                   = libdv #encodedv $(gtk_subdirs)
 
 AUX_DIST                  = $(ac_aux_dir)/config.guess \
                                    $(ac_aux_dir)/config.sub \

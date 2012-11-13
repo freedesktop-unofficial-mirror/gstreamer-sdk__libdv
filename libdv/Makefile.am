@@ -16,7 +16,7 @@ GASMOFF=gasmoff
 endif # HOST_X86_64
 
 
-noinst_PROGRAMS= dovlc testvlc testbitstream $(GASMOFF) recode reppm enctest
+noinst_PROGRAMS= #dovlc testvlc testbitstream $(GASMOFF) recode reppm enctest
 
 #
 # If HOST_X86 is set, we build all the x86 asm stuff..
