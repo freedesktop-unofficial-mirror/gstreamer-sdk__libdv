@@ -28,7 +28,7 @@ static void* t(void* arg)
 	unsigned char* rgb;
 	dv_encoder_t* enc;
 
-	fprintf(stderr, "thread %p: start frame %d\n", (void*) pthread_self(), i);
+	//fprintf(stderr, "thread %p: start frame %d\n", (void*) pthread_self(), i);
 	enc = dv_encoder_new(0, 0, 0);
 	enc->isPAL = 0;
 	enc->vlc_encode_passes = 3;
@@ -40,7 +40,7 @@ static void* t(void* arg)
 	dv_encode_full_frame(enc, &rgb, e_dv_color_rgb, f->dv);
 
 	dv_encoder_free(enc);
-	fprintf(stderr, "thread %p: done frame %d\n", (void*) pthread_self(), i);
+	//fprintf(stderr, "thread %p: done frame %d\n", (void*) pthread_self(), i);
 	return 0;
 }
 

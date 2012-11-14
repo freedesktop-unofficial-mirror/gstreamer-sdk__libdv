@@ -60,6 +60,7 @@ libdv_la_SOURCES= dv.c dct.c idct_248.c weighting.c quant.c vlc.c place.c \
 	$(libdv_la_ASMS)
 
 libdv_la_LDFLAGS = -version-info 4:3:0
+libdv_la_LIBADD = $(PTHREAD_LIBS)
 
 dovlc_SOURCES= dovlc.c 
 dovlc_LDADD= libdv.la

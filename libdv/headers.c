@@ -283,7 +283,12 @@ void dv_encode_metadata(uint8_t *target, int isPAL, int is16x9, time_t *datetime
 {
 	int numDIFseq;
 	int ds;
-	struct tm now_t;
+#ifdef HAVE_LOCALTIME_R
+	struct tm now_t_;
+	struct tm * now_t = &now_t_;
+#else
+	struct tm * now_t = NULL;
+#endif
 
 	numDIFseq = isPAL ? 12 : 10;
 
@@ -291,13 +296,17 @@ void dv_encode_metadata(uint8_t *target, int isPAL, int is16x9, time_t *datetime
 		(*datetime)++;
 	}
 
-	if (localtime_r(datetime, &now_t) != NULL )
+#ifdef HAVE_LOCALTIME_R
+	if (localtime_r(datetime, now_t) != NULL )
+#else
+	if ((now_t = localtime(datetime)) != NULL )
+#endif
 	{
 		for (ds = 0; ds < numDIFseq; ds++) { 
 			target +=   1 * 80;
-			write_subcode_blocks(target, ds, frame, &now_t, isPAL);
+			write_subcode_blocks(target, ds, frame, now_t, isPAL);
 			target +=   2 * 80;
-			write_vaux_blocks(target, ds, &now_t, isPAL, is16x9);
+			write_vaux_blocks(target, ds, now_t, isPAL, is16x9);
 			target +=   3 * 80;
 			target += 144 * 80;
 		}
