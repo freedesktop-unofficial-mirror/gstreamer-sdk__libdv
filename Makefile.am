@@ -1,3 +1,5 @@
+ACLOCAL_AMFLAGS = -I m4
+
 if HAVE_GTK
 gtk_subdirs = playdv
 else
