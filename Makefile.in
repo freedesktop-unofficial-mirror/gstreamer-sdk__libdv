@@ -72,7 +72,7 @@ pkgconfigDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(pkgconfig_DATA)
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = 
+DIST_SUBDIRS = libdv
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -215,7 +215,7 @@ target_os = @target_os@
 target_vendor = @target_vendor@
 @HAVE_GTK_FALSE@gtk_subdirs = 
 @HAVE_GTK_TRUE@gtk_subdirs = playdv
-SUBDIRS = 
+SUBDIRS = libdv
 AUX_DIST = $(ac_aux_dir)/config.guess \
                                    $(ac_aux_dir)/config.sub \
                                    $(ac_aux_dir)/install-sh \
