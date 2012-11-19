@@ -22537,7 +22537,7 @@ fi
 rm -f conftest.mmap
 
 
-for ac_func in gettimeofday sched_setscheduler
+for ac_func in gettimeofday sched_setscheduler localtime_r
 do
 as_ac_var=`echo "ac_cv_func_$ac_func" | $as_tr_sh`
 { echo "$as_me:$LINENO: checking for $ac_func" >&5
