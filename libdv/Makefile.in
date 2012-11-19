@@ -39,9 +39,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 target_triplet = @target@
-noinst_PROGRAMS = dovlc$(EXEEXT) testvlc$(EXEEXT) \
-	testbitstream$(EXEEXT) $(am__EXEEXT_1) recode$(EXEEXT) \
-	reppm$(EXEEXT) enctest$(EXEEXT)
+noinst_PROGRAMS =
 subdir = libdv
 DIST_COMMON = $(am__noinst_HEADERS_DIST) $(pkginclude_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
