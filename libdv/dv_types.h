@@ -42,6 +42,8 @@
 #include <endian.h>
 #elif HAVE_MACHINE_ENDIAN_H
 #include <machine/endian.h>
+#elif HAVE_SYS_PARAM_H
+#include <sys/param.h>
 #endif
 
 /* please tell me these are defined somewhere standard??? */
